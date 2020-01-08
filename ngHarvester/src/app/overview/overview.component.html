@@ -1,0 +1,23 @@
+<div class="persondata" *ngIf="error==''">
+  <img src={{user.avatar}} class="avatar"/>
+  <b>{{ user.name }}</b><br/>
+  ({{ user.username }}) <br/>
+  {{ user.repoCount}} repositories
+  <br style="clear:both"/>
+</div>
+
+<div class="error" *ngIf="error != ''">{{error}}</div>
+
+<table class="repotable" *ngIf="error==''"> 
+  <tr>
+    <th class="medium">name</th><th class="medium">language</th><th class="large">description</th><th class="small">stars</th><th class="small">forks</th>
+  </tr>
+  
+  <tr *ngFor="let r of repos">
+    <td>{{ r.repoName }}</td>
+    <td>{{ r.programmingLanguage }}</td>
+    <td>{{ r.description }}</td>
+    <td>{{ r.stars }}</td>
+    <td>{{ r.forks }}</td>
+  </tr>
+</table>

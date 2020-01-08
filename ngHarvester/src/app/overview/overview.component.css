@@ -1,0 +1,15 @@
+table.overview { border-collapse:collapse; width:100vw; }
+img.avatar { float:left; margin-right:2vw; }
+div.persondata { margin-bottom:3vh; font-size:x-large; }
+
+th,td {  padding:5px;}
+th { border-bottom:solid orange 1px;}
+tr { cursor:pointer; }
+tr:hover { background:#aaa; }
+tr:nth-child(odd):hover { background:#aaa; }
+tr:nth-child(odd) { background:#eee;}
+
+th.small { width:8%; }
+th.medium { width:16%; }
+th.large { width:32%; }
+

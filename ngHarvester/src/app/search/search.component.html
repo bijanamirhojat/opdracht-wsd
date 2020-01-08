@@ -1,0 +1,7 @@
+<div class="search" (submit)="getRepos()">
+    <label for="search">github user: </label>
+    <input type="text" name="search" id="search" placeholder="Enter user name"
+      (blur)=getRepos($event)
+      (keydown.enter)=getRepos($event)
+      #user />
+</div>
