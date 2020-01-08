@@ -1,23 +1,25 @@
 from flask import Flask, Response
 from flask import request, render_template, session
-from data import github_repos
+import database as db
 import json
 
 app=Flask(__name__)
 
-@app.route('/getrepos/<username>')
+@app.route('/getrepos/<username>', methods=['GET'])
 def getrepos(username):
-    output = [x for x in github_repos if x['persondata']['username']==username]
-    if len(output)==0 :
-        resp = Response('')
-        resp.headers['Access-Control-Allow-Origin'] = '*'
-        return resp, 404
+    return json.dumps(db.get_repos_for_user(username))
 
-    else:
-        resp = Response(json.dumps(output))
-        resp.headers['Content-Type']='application/json'
-        resp.headers['Access-Control-Allow-Origin'] = '*'
-        return resp, 200
+@app.route('/getdata/<username>', methods=['GET'])
+def getdata(username):
+    return json.dumps(db.get_userdata(username))
+
+@app.route('/makerepos', methods=['POST'])
+def makerepos():
+    return json.dumps(db.insert_repos(request.json))
+
+
+
+
 
 if __name__=="__main__":
     app.run(debug=True)
