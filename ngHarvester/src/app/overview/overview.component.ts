@@ -19,9 +19,9 @@ export class OverviewComponent implements OnInit {
    
   ngOnInit() { 
     this.userService.getUser$.subscribe( data => { 
-      if (data[0].repos !== undefined ) { 
-        this.user = data[0].persondata
-        this.repos = data[0].repos
+      if (data.repos !== undefined ) { 
+        this.user = data.persondata
+        this.repos = data.repos
         this.error=''
       } else {
         this.error = 'Fout; data had niet het verwachte formaat. Check de console.'
@@ -32,7 +32,10 @@ export class OverviewComponent implements OnInit {
 
     this.userService.getError$.subscribe ( error => {
       if (error.status == 404) {
-        this.error = 'Die gebruiker bestaat niet'
+      console.log(error.status)  
+      this.error = 'Die gebruiker bestaat niet'
+      this.user = { 'name' : '', 'avatar' : '', 'repoCount' : '', 'username' : '' }
+      this.repos = []
       }
     }) 
   } 

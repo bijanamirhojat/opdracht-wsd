@@ -1,23 +1,31 @@
-<div class="persondata" *ngIf="error==''">
-  <img src={{user.avatar}} class="avatar"/>
-  <b>{{ user.name }}</b><br/>
-  ({{ user.username }}) <br/>
-  {{ user.repoCount}} repositories
-  <br style="clear:both"/>
-</div>
+<div class="persondata" *ngIf="user">
+  <!-- OPGAVE 2b: voer hier de code in om de gebruikersdata weer te geven. -->
+  
+  <b>{{ user.name }}</b>
+  
+  <b> <img src="{{user.avatar}}"></b>
+  <!--<b>{{ user.repoCount }}</b> -->
+  </div>
 
+
+  <!-- 
+    OPGAVE 5: 
+    bekijk de onderstaande constructie en construeer op basis hiervan een
+    duidelijke flow voor de error, zodat deze alleen maar leeg is als er
+    daadwerkelijk geen error is.
+  -->
 <div class="error" *ngIf="error != ''">{{error}}</div>
 
-<table class="repotable" *ngIf="error==''"> 
+<table class="repotable"> 
   <tr>
     <th class="medium">name</th><th class="medium">language</th><th class="large">description</th><th class="small">stars</th><th class="small">forks</th>
   </tr>
-  
-  <tr *ngFor="let r of repos">
-    <td>{{ r.repoName }}</td>
-    <td>{{ r.programmingLanguage }}</td>
-    <td>{{ r.description }}</td>
-    <td>{{ r.stars }}</td>
-    <td>{{ r.forks }}</td>
-  </tr>
+
+  <!-- OPGAVE 3b:
+    voer hier regels in op basis van het property repos 
+    tip: wat voor soort datatype is repos?
+    let p of repos
+  -->
+
+  <tr *ngFor="let p of repos"><td>{{p.reponame}}</td><td>{{p.programmingLanguage}}</td><td>{{p.description}}</td><td>{{p.stars}}</td><td>{{p.forks}}</td></tr>
 </table>
